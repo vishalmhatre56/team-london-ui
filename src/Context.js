@@ -87,6 +87,10 @@ const ContextProvider = ({ children }) => {
     stream.getVideoTracks()[0].enabled = !(stream.getVideoTracks()[0].enabled);
   }
 
+  const muteToggle = () => {
+    stream.getAudioTracks()[0].enabled = !(stream.getAudioTracks()[0].enabled);
+  }
+
   return (
     <SocketContext.Provider value={{
       call,
@@ -101,7 +105,8 @@ const ContextProvider = ({ children }) => {
       callUser,
       leaveCall,
       answerCall,
-      showVideoToggle
+      showVideoToggle,
+      muteToggle
     }}
     >
       {children}

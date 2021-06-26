@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Sidebar = ({ children }) => {
-  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, showVideoToggle } = useContext(SocketContext);
+  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, showVideoToggle, muteToggle } = useContext(SocketContext);
   const [idToCall, setIdToCall] = useState('');
   const classes = useStyles();
 
@@ -65,6 +65,9 @@ const Sidebar = ({ children }) => {
                 </Button>
                 <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => showVideoToggle()} className={classes.margin}>
                   Video Toggle
+                </Button>
+                <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => muteToggle()} className={classes.margin}>
+                  Mute Toggle
                 </Button>
                 </>
               ) : (
