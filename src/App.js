@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import VideoPlayer from './components/VideoPlayer';
 import Sidebar from './components/Sidebar';
+import Homepage from './components/Homepage';
 import Notifications from './components/Notifications';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '15px',
   },
   wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    width: '100%',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // alignItems: 'center',
+    // width: '100%',
+    padding: '2rem'
   },
 }));
 
@@ -37,9 +39,10 @@ const App = () => {
 
   return (
     <div className={classes.wrapper}>
-      <AppBar className={classes.appBar} position="static" color="inherit">
+      {/* <AppBar className={classes.appBar} position="static" color="inherit">
         <Typography variant="h2" align="center">Doctor Meet</Typography>
-      </AppBar>
+      </AppBar> */}
+      <Homepage />
       <VideoPlayer />
       <Sidebar>
         <Notifications />
