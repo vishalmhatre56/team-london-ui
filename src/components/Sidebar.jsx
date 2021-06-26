@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Sidebar = ({ children }) => {
-  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser } = useContext(SocketContext);
+  const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, showVideoToggle, muteToggle } = useContext(SocketContext);
   const [idToCall, setIdToCall] = useState('');
   const classes = useStyles();
 
@@ -59,10 +59,17 @@ const Sidebar = ({ children }) => {
             <Grid item xs={12} md={6} className={classes.padding}>
               <Typography gutterBottom variant="h6">Make a call</Typography>
               <TextField label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
-              {callAccepted && !callEnded ? (
+              {callAccepted && !callEnded ? (<>
                 <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => leaveCall()} className={classes.margin}>
                   Hang Up
                 </Button>
+                <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => showVideoToggle()} className={classes.margin}>
+                  Video Toggle
+                </Button>
+                <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => muteToggle()} className={classes.margin}>
+                  Mute Toggle
+                </Button>
+                </>
               ) : (
                 <Button variant="contained" color="primary" startIcon={<Phone fontSize="large" />} fullWidth onClick={() => callUser(idToCall)} className={classes.margin}>
                   Call
