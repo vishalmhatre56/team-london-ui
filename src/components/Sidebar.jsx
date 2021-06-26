@@ -4,6 +4,8 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Assignment, Phone, PhoneDisabled } from '@material-ui/icons';
 import { makeStyles } from '@material-ui/core/styles';
 
+import $ from 'jquery';
+
 import { SocketContext } from '../Context';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +38,29 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid black',
   },
 }));
+
+function apiService(url, request, successCall, errorCall) {
+  request.token = localStorage.getItem('token');
+  $.ajax({
+      url: url,
+      type: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      data: request,
+      success: (data) => {
+          successCall(data)
+      },
+      error: (err) => {
+          if (err.status === 403 || err.status === 401) {
+              localStorage.clear()
+              window.location('/login')
+          }
+          errorCall(err)
+      }
+  })
+}
+
 
 const Sidebar = ({ children }) => {
   const { me, callAccepted, name, setName, callEnded, leaveCall, callUser, showVideoToggle, muteToggle } = useContext(SocketContext);
