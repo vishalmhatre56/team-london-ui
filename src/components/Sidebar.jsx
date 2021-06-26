@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
               <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
               <CopyToClipboard text={me} className={classes.margin}>
                 <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />}>
-                  Copy Your Phone No
+                  Copy Your ID
                 </Button>
               </CopyToClipboard>
             </Grid>
