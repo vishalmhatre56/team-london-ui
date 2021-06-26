@@ -20,11 +20,6 @@ app.get('/', (req, res) => {
 io.on("connection", (socket) => {
 	socket.emit("me", socket.id);
 
-	socket.on("disconnect", () => {
-		console.log("disconnect!!")
-		socket.emit("callEnded")
-	});
-
 	socket.on("callUser", ({ userToCall, signalData, from, name }) => {
 		io.to(userToCall).emit("callUser", { signal: signalData, from, name });
 	});

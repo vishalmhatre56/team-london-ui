@@ -46,7 +46,7 @@ const ContextProvider = ({ children }) => {
     peer.on('stream', (currentStream) => {
       userVideo.current.srcObject = currentStream;
     });
-
+  
     peer.signal(call.signal);
 
     connectionRef.current = peer;
@@ -68,9 +68,20 @@ const ContextProvider = ({ children }) => {
 
       peer.signal(signal);
     });
+    peer.on('close', () => { 
+      console.log(' close Call ended');
+      setCallEnded(true);
+
+      connectionRef.current.destroy();
+  
+      window.location.reload();
+
+     });
     socket.on('callEnded', () => {
       console.log('Call ended');
       setCallEnded(true);
+      connectionRef.current.destroy();
+      window.location.reload();
     });
     connectionRef.current = peer;
   };
