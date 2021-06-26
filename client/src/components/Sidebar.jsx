@@ -52,7 +52,7 @@ const Sidebar = ({ children }) => {
               <TextField label="Name" value={name} onChange={(e) => setName(e.target.value)} fullWidth />
               <CopyToClipboard text={me} className={classes.margin}>
                 <Button variant="contained" color="primary" fullWidth startIcon={<Assignment fontSize="large" />}>
-                  Copy Your ID
+                  Copy Your Phone No
                 </Button>
               </CopyToClipboard>
             </Grid>
@@ -60,7 +60,7 @@ const Sidebar = ({ children }) => {
               <Typography gutterBottom variant="h6">Make a call</Typography>
               <TextField label="ID to call" value={idToCall} onChange={(e) => setIdToCall(e.target.value)} fullWidth />
               {callAccepted && !callEnded ? (
-                <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={leaveCall} className={classes.margin}>
+                <Button variant="contained" color="secondary" startIcon={<PhoneDisabled fontSize="large" />} fullWidth onClick={() => leaveCall()} className={classes.margin}>
                   Hang Up
                 </Button>
               ) : (

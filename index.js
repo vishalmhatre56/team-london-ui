@@ -18,10 +18,11 @@ app.get('/', (req, res) => {
 });
 
 io.on("connection", (socket) => {
-	socket.emit("me", socket.id);
+	socket.emit("me", "9898777667");
 
 	socket.on("disconnect", () => {
-		socket.broadcast.emit("callEnded")
+		console.log("disconnect!!")
+		socket.emit("callEnded")
 	});
 
 	socket.on("callUser", ({ userToCall, signalData, from, name }) => {

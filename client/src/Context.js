@@ -68,7 +68,10 @@ const ContextProvider = ({ children }) => {
 
       peer.signal(signal);
     });
-
+    socket.on('callEnded', () => {
+      console.log('Call ended');
+      setCallEnded(true);
+    });
     connectionRef.current = peer;
   };
 
