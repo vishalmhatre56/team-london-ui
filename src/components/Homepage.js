@@ -49,8 +49,13 @@ class Homepage extends Component {
         super()
         this.state = {
             docType: "Cardiologist",
-            searchDocList: []
+            searchDocList: [],
+            AllDoctors: []
         }
+    }
+
+    getAllDocList = () => {
+        this.setState({searchDocList: docArray})
     }
 
     getDocList = () => {
@@ -91,11 +96,12 @@ class Homepage extends Component {
                         <option  value="Neurologist">Neurologist</option>
                     </select>
                     <button type="button" className="search-btn ml-3" onClick={()=>this.getDocList()}>Search</button>
+                    <button type="button" className="search-btn ml-3" onClick={()=>this.getAllDocList()}>See All Doctors</button>
+
                 </div>
 
-                <div>
+                <div className="d-flex flex-wrap justify-content-center">
                     {this.state.searchDocList.map((doctorObj)=>{
-                        console.log("--------------",this.state.searchDocList)
                         return(
                             <ShowDoc doc={doctorObj}/>
                         )
